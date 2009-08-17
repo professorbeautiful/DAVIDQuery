@@ -50,7 +50,7 @@
 \begin_body
 
 \begin_layout Title
-Vignette for the 
+The 
 \begin_inset ERT
 status open
 
@@ -63,27 +63,34 @@ Rpackage{DAVIDQuery}
 
 \end_inset
 
- package: 
-\end_layout
-
-\begin_layout Title
-Retrieving data from the DAVID Bioinformatics Resource
+ package in Bioconductor: Retrieving data from the DAVID Bioinformatics
+ Resource
 \end_layout
 
 \begin_layout Author
-Roger Day 
-\end_layout
-
-\begin_layout Author
-Departments of Biomedical Informatics and Biostatistics 
-\end_layout
-
-\begin_layout Author
-University of Pittsburgh
+Roger S.
+ Day† 
 \end_layout
 
 \begin_layout Date
-January 10, 2009
+August 15, 2009
+\end_layout
+
+\begin_layout Address
+†Departments of Biomedical Informatics and Biostatistics 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+ University of Pittsburgh
 \end_layout
 
 \begin_layout Section
@@ -276,7 +283,7 @@ _ID}
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -347,7 +354,7 @@ _ID}
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -420,7 +427,7 @@ _PROTEIN}
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -491,7 +498,7 @@ _ID}
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -562,7 +569,7 @@ _GENOMIC}
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1056,7 +1063,7 @@ Rcode{DAVIDQuery(testMe=TRUE)}
 
 \end_inset
 
- is the equivalent of the DAVDQuery call above.
+ is the equivalent of the DAVIfDQuery call above.
  
 \end_layout
 
@@ -1165,7 +1172,7 @@ length(result)
 \begin_inset Newline newline
 \end_inset
 
-names(result$DAVIDQueryResult[[1]])
+names(result[[1]])
 \begin_inset Newline newline
 \end_inset
 
