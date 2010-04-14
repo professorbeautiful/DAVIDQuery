@@ -63,10 +63,12 @@ Da Wei Huang, Brad T Sherman, Robert Stephens, Michael W Baseler, H Clifford Lan
 
 \seealso{ \code{\link{DAVIDQueryLoop}}, \code{\link{formatDAVIDResult}} }
 \examples{
-result = DAVIDQuery(testMe=TRUE)$DAVIDQueryResult
-print(length(result))
+result = DAVIDQuery(testMe=TRUE)
+print(names(result))
 print(result$firstURL)
 print(result$secondURL)
-print(result$O00161$REFSEQ_MRNA)  ### Uses UNIPROT ID's for input.
+print(names(result$DAVIDQueryResult))
+print(names(result$DAVIDQueryResult$O00161))
+print(result$DAVIDQueryResult$O00161$GENE_SYMBOL)  ### Uses UNIPROT ID's for input.
 }
 \keyword{ database }

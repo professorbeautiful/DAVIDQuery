@@ -6,7 +6,7 @@ testGene2Gene <- function(ids="33246_AT,32469_AT,1786_AT,32680_AT,1355_G_AT,3796
 ##		- Clicking "Download File"
 ##		- Noting the URL of the file (which  is not permanent),
 ##		- Executing 
-##			gene2gene.example.output <- read.delim(("http://david.abcc.ncifcrf.gov/UserDownload/GG_4E93BEC325C1.txt"))
+##			gene2gene.example.output <- read.delim(("http://david.abcc.ncifcrf.gov/data/download/GG_4E93BEC325C1.txt"))
 ##			gene2gene.example.input <- gene2gene.example.output[,1]
 ##			gene2gene.example.input <- gene2gene.example.input [
 ##		- grep("Functional Group", gene2gene.example.input)]

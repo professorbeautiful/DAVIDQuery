@@ -87,19 +87,20 @@ function(ids="O00161,O75396",
 		if(writeHTML) writeChar(secondStageResult, "secondStageResult.html")
 		downloadFileName <- bracketedStrings(
 			secondStageResult, 
-			"href=\"UserDownload/", "\" target=")
+			"href=\"data/download/", "\" target=")
 		if(length(downloadFileName) == 0) 	
 			warning("Warning: downloadFileName is not found in reply html. \n")
-		downloadURL <- paste(DAVIDURLBase, "/UserDownload/", 
+		downloadURL <- paste(DAVIDURLBase, "/data/download/", 
 								downloadFileName, sep="") 
 		if(verbose) cat("downloadURL = ", downloadURL, "\n")
-		read.delim(downloadURL, header=FALSE, stringsAsFactors=FALSE)
+		read.delim(downloadURL, header=TRUE, check.names=FALSE,
+                    stringsAsFactors=FALSE)
 	})
 	try(
 		if(is.data.frame(DAVIDQueryResult) & (length(DAVIDQueryResult) > 0)){
 			#print(DAVIDQueryResult[[1]])
-			#print(grep("<title>Directory Listing For /UserDownload/</title>", DAVIDQueryResult[[1]]))
-			if(length(grep("<title>Directory Listing For /UserDownload/</title>", DAVIDQueryResult[[1]])) > 0) {
+			#print(grep("<title>Directory Listing For /data/download/</title>", DAVIDQueryResult[[1]]))
+			if(length(grep("<title>Directory Listing For /data/download/</title>", DAVIDQueryResult[[1]])) > 0) {
 	     		DAVIDQueryResult <- paste("No result file was found. URL = ", DAVIDQueryResult$firstURL)
 	       	class(DAVIDQueryResult) <- "try-error"
     		}
