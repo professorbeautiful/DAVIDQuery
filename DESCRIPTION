@@ -1,7 +1,7 @@
 Package: DAVIDQuery
 Type: Package
 Title: Retrieval from the DAVID bioinformatics data resource into R
-Version: 1.5.1
+Version: 1.6.0
 Date: 2010-04-14
 Author: Roger Day
 Maintainer: Roger Day <day@upci.pitt.edu>
