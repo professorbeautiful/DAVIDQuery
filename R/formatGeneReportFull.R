@@ -1,19 +1,39 @@
-formatGeneReportFull <- function(result){
-    ids <- strsplit(attr(result,"ids") , split=",")[[1]]
-	annot <- attr(result,"annot") 
-	type <- attr(result,"type") 
-	idRows <- match(ids, result[,1])
-	theFeatures <- c("Gene Name", "Species", "ENSEMBL_GENE_ID",
-        "ENTREZ_GENE_ID", "GENE_SYMBOL")
-	nFeatures <- length(theFeatures)
-	nIds <- length(idRows)
-	temp2 <- matrix(rep("", nIds*nFeatures), nrow=nFeatures,
-		ncol=nIds, dimnames=list(theFeatures, ids))
-	temp2[,ids] <- t(as.matrix(result[idRows,theFeatures]))
-	invisible(sapply(ids, simplify=FALSE, function(id) {
-            info <- as.list(temp2[, id])
-            info[-c(1:2)] <- lapply(info[-c(1:2)],
-                function(f) strsplit(f, split=",")[[1]])
-            info
-        }))
+formatGeneReportFull = function (result) 
+{
+	####  Changelog: 2010-05-09: 
+	#### 	-Coping with a change in DAVIDQuery API returnvalue format that broke this function.
+	####	-Formatting of the featureNamesComplex components is improved: parsed into a list.
+	
+	resultNames = unlist(result[1, ])
+	result = result[-1, ]
+	names(result) = resultNames
+    ids <- strsplit(attr(result, "ids"), split = ",")[[1]]
+    annot <- attr(result, "annot")
+    type <- attr(result, "type")
+    idRows <- match(ids, result[, 1])
+    names(idRows) = ids
+    formatted =  list()
+    featureNames = resultNames[-1]
+    featureNamesComplex = c("GENERIF_SUMMARY", "SP_COMMENT")
+    featureNamesSimple = setdiff(featureNames, featureNamesComplex)
+    for(id in ids) {
+
+    	formatted[[id]] = strsplit(unlist(result[idRows[id], featureNamesSimple, drop=TRUE]), split=",")
+    	names(formatted[[id]]) = featureNamesSimple
+    	for(feature in featureNamesComplex) {
+    		thisFeature = result[idRows[id], feature]
+    		g.out = gregexpr("[^,]+:", thisFeature)[[1]]
+    		g.names = (substring(thisFeature, g.out, 
+    					g.out + attr(g.out, "match.length") - 2))
+    		g.values = (substring(thisFeature, 
+    					g.out + attr(g.out, "match.length"), 
+    					c(g.out[-1] - 2, nchar(thisFeature) - 1)))
+    		names(g.values) = g.names
+    		formatted[[id]][[feature]] = as.list(g.values)
+#    		if(!is.null(formatted[[id]][[thisFeature]]))
+#    			names(formatted[[id]][[thisFeature]]) = g.names
+    	}
+    }
+    names(formatted) = ids
+    return(formatted)
 }
