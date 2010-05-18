@@ -96,7 +96,7 @@ function(ids="O00161,O75396",
         if (writeHTML) 
             writeChar(secondStageResult, "secondStageResult.html")
         downloadFileName <- bracketedStrings(secondStageResult, 
-            "<a href=\"", "\" ")[1]  ###  Fixed  Saturday, May 8, 2010   RD
+            "<a href=\"", "\" ", warn.if.gt.1=FALSE)[1]  ###  Fixed  Saturday, May 8, 2010   RD
         if (length(downloadFileName) == 0) 
             warning("Warning: downloadFileName is not found in reply html. \n")
 		downloadURL <- paste(DAVIDURLBase, 
@@ -125,6 +125,7 @@ function(ids="O00161,O75396",
     if (details) 
 		return(list(
 			ids=ids,   ### might be shorter than the original arg value.
+			myCurlHandle=myCurlHandle,
 			firstURL=firstURL,
 			firstStageResult=firstStageResult,
 			DAVIDaction=DAVIDaction,
