@@ -13,9 +13,10 @@ AffyProbesetList = function(chipname=NULL,
 	txtIndices <- unlist(gregexpr(".txt", arrayNames)) - 1
 	arrayNamesPretty <- arrayNames
 	### Remove ".txt" from the end of the arrayNames.
-	arrayNamesPretty[txtIndices>0] <- 	substring(			arrayNamesPretty[txtIndices>0], 1, 
-				unlist(gregexpr(".txt", arrayNamesPretty[txtIndices>0])) - 1)
-		arrayIndices <- unlist(gregexpr(" Array", arrayNamesPretty)) - 1
+	arrayNamesPretty[txtIndices>0] <- 	substring(
+		arrayNamesPretty[txtIndices>0], 1, 
+		unlist(gregexpr(".txt", arrayNamesPretty[txtIndices>0])) - 1)
+	arrayIndices <- unlist(gregexpr(" Array", arrayNamesPretty)) - 1
 	arrayNamesPretty[arrayIndices>0] <- 	substring(arrayNamesPretty[arrayIndices>0], 1, 
 					unlist(gregexpr(" Array", arrayNamesPretty[arrayIndices>0])) - 1)
 	### Remove " Array" from the end of some arrayNames.
@@ -42,8 +43,9 @@ AffyProbesetList = function(chipname=NULL,
 	if(is.na(arrayLink))
 			arrayLink <- arrayLinks[match(chipname, arrayNamesPretty)]
 	if(verbose) cat("chipname=", chipname, "  arrayLink=", arrayLink)
+### TODO:  retrieve the result from disk cache if already downloaded.
 	theURL <- paste(DAVIDURLBase, arrayLink, sep="")
  	if(verbose) cat("\n  theURL=", theURL, "\n")
 	result <- strsplit(RCurl::getURL(theURL, curl=myCurlHandle, verbose=FALSE), split="\n")[[1]]
-	return(result)
+	return(invisible(result))
 }
