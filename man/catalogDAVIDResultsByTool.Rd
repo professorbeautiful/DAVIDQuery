@@ -5,11 +5,12 @@
 Loops through values of \code{tool}, for the specified value of \code{annot}.  Runs each DAVID query, and saves the result to create a catalog of types of DAVID results. }
 
 \usage{
-catalogDAVIDResultsByTool(annot = NULL, sleepSeconds = 10, ...)
+catalogDAVIDResultsByTool(annot = NULL, sleepSeconds = 10, details = FALSE, ...)
 }
 \arguments{
   \item{annot}{ See  \code{\link{DAVIDQuery}} . }
   \item{sleepSeconds}{ \code{\link{DAVIDQueryLoop}} .}
+  \item{details}{ If TRUE, a list of intermediate results is returned for each catalog item;  otherwise, just the final query result. Default is FALSE.}
   \item{...}{ Extra args passed to DAVIDQuery. }
 }
 \details{

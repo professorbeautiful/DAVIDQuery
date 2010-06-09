@@ -12,7 +12,7 @@ uniprotToAffy(uid = "O00161", ...)
   \item{\dots}{ Args to be passed to \code{DAVIDQuery()}. }
 }
 \value{
-	The output of \code{\link{DAVIDQuery}}.  If only the DAVIDQueryResult component is desired, include the arg \code{details=FALSE}.  If probesets from a specific chip are desired, then you can intersect these results with the results of \code{\link{AffyProbesetList}}. 
+	The output of \code{\link{DAVIDQuery}}.  If only the DAVIDQueryResult component is desired, include the arg \code{details=FALSE}.  If probesets from a specific chip are desired, then you can intersect these results with the results of \code{\link{getAffyProbesetList}}. 
 }
 \note{ There is currently no provision for using \code{\link{DAVIDQueryLoop}} .}
 \author{ Roger Day }

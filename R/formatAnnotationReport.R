@@ -12,8 +12,8 @@ formatAnnotationReport <- function(result){
 		function(id)
 			sapply(simplify=F, theFeatures, function(feat) {
 					s = temp1[ feat, id]
-					print(feat)
-					print(s)
+					#print(feat)
+					#print(s)
 					#ifelse(feat == "Gene Name",  s,  strsplit(s, ", ")[[1]] )
 					###  a bug in ifelse() ???
 					if(feat == "Gene Name") return (s) else return( strsplit(s, ", ")[[1]]) 

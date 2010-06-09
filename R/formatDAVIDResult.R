@@ -1,4 +1,8 @@
 formatDAVIDResult <- function(result, verbose=FALSE) {
+	### we always use read.delim(...header=TRUE) but formatting expects the first row tobe the column names
+	### in order to make formatting work we add the top row
+	result<-rbind(colnames(result),result);
+
 	tool <- attr(result,"tool") 
 	if(verbose) 
 		cat("formatDAVIDResult: tool=", tool, 

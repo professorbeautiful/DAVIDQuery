@@ -8,7 +8,8 @@ chartReport
 annotationReport
 list
 geneReport
-geneReportFull", split="\n")[[1]]
+geneReportFull
+geneIdConversion", split="\n")[[1]]
 
 names(DAVIDToolChoices) = 
 	strsplit(split="\n",
@@ -19,7 +20,8 @@ Functional Annotation Chart
 Functional Annotation Table
 Show Gene List Names in Batch
 Gene Report
-Gene Full Report")[[1]]
+Gene Full Report
+Gene ID Conversion")[[1]]
 
 DAVIDToolChoices <- DAVIDToolChoices[
 	strsplit(split="\n",
@@ -27,7 +29,8 @@ DAVIDToolChoices <- DAVIDToolChoices[
 Functional Annotation Table
 Show Gene List Names in Batch
 Gene Report
-Gene Full Report")[[1]]
+Gene Full Report
+Gene ID Conversion")[[1]]
 ]
 ### We cannot yet handle some Annotation features,
 ### so they are dropped from the pick list.
