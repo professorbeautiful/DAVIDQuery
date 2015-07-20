@@ -1,2 +1,2 @@
 
-DAVIDURLBase <- "http://david.abcc.ncifcrf.gov/"
+DAVIDURLBase <- "https://david.abcc.ncifcrf.gov/"
