@@ -1,8 +1,8 @@
 Package: DAVIDQuery
 Type: Package
 Title: Retrieval from the DAVID bioinformatics data resource into R
-Version: 1.29.1
-Date: 2015-07-20
+Version: 1.29.2
+Date: 2015-08-09
 Author: Roger Day, Alex Lisovich
 Maintainer: Roger Day <day01@pitt.edu>
 Description: Tools to retrieve data from DAVID, the Database for Annotation, Visualization and Integrated Discovery
