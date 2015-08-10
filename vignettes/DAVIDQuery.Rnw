@@ -41,6 +41,7 @@
 \usepackage{babel}
 
 \begin{document}
+%  NO GOOD ANYMORE?  \SweaveOpts{concordance=TRUE}
 
 \title{The \Rpackage{DAVIDQuery} package in Bioconductor: Retrieving data
 from the DAVID Bioinformatics Resource}
