@@ -25,17 +25,22 @@
 #' @export getAnnotationChoices
 #' @author Roger Day, Alex Lisovich
 
+# Working as of 2015-08-09
 
 getIdConversionChoices<-function(urlBase=DAVIDURLBase,curl=RCurl::getCurlHandle(),verbose=TRUE){
 	if (is.null(DAVIDQuery::DAVIDTypeChoices)){
 
+	  options(RCurlOptions = list(verbose = FALSE, capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"), ssl.verifypeer = FALSE))
+	  
 		if (verbose)
 			cat("Retrieving ID conversion choices...\n");
 
-		url=paste(urlBase,"conversion.jsp",sep="/");
-		page<-RCurl::getURL(url,curl=curl);
+		theUrl <- paste(urlBase,"conversion.jsp",sep="/");
+		theUrl <- paste0("https://", theUrl );
+
+		page <- RCurl::getURL(theUrl, curl=curl);
 	
-		res<-list(from=getHTMLChoices(page,"name=\"Identifier\" >"),to=getHTMLChoices(page,"name=\"convertTo\""));
+		res <- list(from=getHTMLChoices(page,"name=\"Identifier\" >"),to=getHTMLChoices(page,"name=\"convertTo\""));
 
 		#change DAVIDAnnotChoices in the DAVIDQuery namespace
 		assignInNamespace("DAVIDTypeChoices",res,"DAVIDQuery");

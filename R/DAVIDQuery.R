@@ -4,12 +4,16 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
                       writeHTML = FALSE, testMe = FALSE, graphicMenu = FALSE, formatIt = TRUE) 
 {
   #generate ID choices online from DAVID web site
+  options(RCurlOptions = list(verbose = FALSE, capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"), ssl.verifypeer = FALSE))
+  
   idChoices <- getIdConversionChoices(verbose=verbose);
   
   if (testMe) {
     type <- "UNIPROT_ACCESSION"
     annot <- NULL
     tool <- "geneReportFull"
+    verbose = TRUE
+    writeHTML = TRUE
   }
   else {
     if (type == "menu") {
@@ -86,6 +90,7 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
       firstURLOK <- TRUE
     else ids <- ids[-length(ids)]
   }
+  firstURL = paste0("https://", firstURL)
   DAVIDQueryResult <- try({
     myCurlHandle <- RCurl::getCurlHandle(cookiefile = "DAVIDCookiefile.txt")
     firstStageResult <- RCurl::getURL(firstURL, curl = myCurlHandle, 
@@ -101,13 +106,15 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
     secondURL <- paste(DAVIDURLBase, DAVIDaction, "?", 
                        paste(DAVIDfields, "=", DAVIDvalues, sep = "", collapse = "&"), 
                        sep = "")
+    secondURL = paste0("https://", secondURL)
+    
     if (verbose) 
       cat("DAVIDQuery:  secondURL = ", secondURL, "\n")
     if (nchar(secondURL) > URLlengthLimit) 
       stop(paste("nchar(secondURL) too long; ", nchar(secondURL), 
                  ">", URLlengthLimit))
     secondStageResult <- RCurl::getURL(secondURL, curl = myCurlHandle, 
-                                       verbose = FALSE)
+                                       verbose = TRUE)
     hasSessionEnded <- length(grep("Your session has ended", 
                                    secondStageResult) > 0)
     if (hasSessionEnded) 
@@ -118,16 +125,20 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
                                          "href=\"data/download/", "\" target=")
     if (length(downloadFileName) == 0) 
       warning("Warning: downloadFileName is not found in reply html. \n")
-    downloadURL <- paste(DAVIDURLBase, "data/download/", 
-                         downloadFileName, sep = "")
+    downloadURL <- paste0("https://", DAVIDURLBase, "data/download/", 
+                         downloadFileName)
     if (verbose) 
       cat("downloadURL = ", downloadURL, "\n")
-    
+    thirdStageResult = RCurl::getURL(downloadURL,curl = myCurlHandle, 
+                                     verbose = TRUE)
+    writeChar(thirdStageResult, "thirdStageResult.html")
     if (tool=="geneReport"){
       # work around the format in which the file for 'geneReport' is returned by DAVID 
-      read.delim(downloadURL,stringsAsFactors=FALSE,header=TRUE,nrows=0);
+      read.delim("thirdStageResult.html",stringsAsFactors=FALSE,header=TRUE,nrows=0);
     } else {
-      read.delim(downloadURL, header = TRUE, check.names = FALSE, stringsAsFactors = FALSE);
+      downloadedAnswer = RCurl::getURL(downloadURL, header = TRUE, check.names = FALSE, stringsAsFactors = FALSE);
+      write(x = downloadedAnswer, file = "downloadedAnswer.txt")
+      read.delim("downloadedAnswer.txt", header = TRUE, check.names = FALSE, stringsAsFactors = FALSE);
     }
   })
   try(if (is.data.frame(DAVIDQueryResult) 

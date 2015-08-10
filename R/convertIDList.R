@@ -80,14 +80,15 @@ convertIDList<-function(idList,curl=NULL,fromType=NULL, toType=NULL, urlBase=DAV
 
 
 	#upload ID list
-	url1=paste(urlBase,"tools.jsp",sep="");
+	url1=paste0("https://", urlBase,"tools.jsp");
 	res1<-uploadIDList(url1,curl,idList,type=fromType, verbose=verbose);
 	if (writeHTML)
 		writeChar(res1, "firstStageResult.html");
 
 	#turn off the internal DAVID check 'at least 80% samples should be mapped'
-	submitAnyway<-RCurl::getURL(paste(urlBase,"submitAnyway.jsp",sep="/"),curl=curl);
-
+	submitAnywayURL <- paste0("https://", urlBase,"submitAnyway.jsp")
+	submitAnywayResult <- RCurl::getURL(submitAnywayURL, curl=curl);
+	
 	#submit conversion request
 	url2<-paste(urlBase,"conversion2.jsp",sep="");
 	res2<-requestIDConversion(url2,curl,type=toType,verbose=verbose);
