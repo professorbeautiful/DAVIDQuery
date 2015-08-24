@@ -13,8 +13,8 @@
 #' @examples
 #' \dontrun{ 
 #' myCurlHandle<-RCurl::getCurlHandle(cookiefile="DAVIDCookies.txt");
-#' res1<-RCurl::getURL("http://david.abcc.ncifcrf.gov", curl = myCurlHandle);
-#' url="http://david.abcc.ncifcrf.gov/summary.jsp";
+#' res1<-RCurl::getURL("https://david.ncifcrf.gov", curl = myCurlHandle);
+#' url="https://david.ncifcrf.gov/summary.jsp";
 #' idList=c("P04264", "P13645", "P35908", "P08729", "P08727", "P25705", "P06576", "Q2KHP4", "Q14764", "P14625");
 #' res2<-uploadIDList(url,myCurlHandle,idList,type="UNIPROT_ACCESSION",verbose=TRUE);
 #' }

@@ -7,7 +7,7 @@
 Base URL for the DAVID database. 
 }
 \source{
-	\url{http://david.abcc.ncifcrf.gov}
+	\url{https://david.ncifcrf.gov}
 }
 \seealso{
 	\code{\link{DAVIDQuery}}

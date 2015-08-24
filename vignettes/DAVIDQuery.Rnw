@@ -72,11 +72,11 @@ records.'' Further information can be found in published articles
 {[}1{]}{[}2{]}.
 
 As of this time, maintenance of the DAVID resource is supervised by
-Dr. Richard Lempicki. The resource is accessed interactively at \url{http://david.abcc.ncifcrf.gov/}.
+Dr. Richard Lempicki. The resource is accessed interactively at \url{https://david.ncifcrf.gov/}.
 The interactive interface provided there is suitable for many purposes,
 but for a bioinformatician using R an automated procedural solution
 is needed. The convention for executing queries via formation of URL
-attribute-value strings is provided at \url{http://david.abcc.ncifcrf.gov/content.jsp?file=DAVID_API.html}.
+attribute-value strings is provided at \url{https://david.ncifcrf.gov/content.jsp?file=DAVID_API.html}.
 Although this is described as an application program interface (API),
 the desired query result is not directly provided by the immediate
 return page, and two rounds of {}``screen-scraping'' and URL formulation
@@ -99,7 +99,7 @@ The list of legitimate values for \Robject{type} has increased from
 15 to 37 and includes the {}``Not sure'' type which causes the DAVID
 system to infer the type based on the ID list content. The choices,
 described as {}``DAVID's recognized gene types'', now are obtained
-directly from the page \url{http://david.abcc.ncifcrf.gov/tools.jsp}. 
+directly from the page \url{https://david.ncifcrf.gov/tools.jsp}. 
 
 The legitimate values for \Robject{type} (excluding {}``Not Sure'')
 are:

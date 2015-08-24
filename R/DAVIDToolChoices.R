@@ -1,4 +1,4 @@
-### From http://david.abcc.ncifcrf.gov/content.jsp?file=DAVID_API.html
+### From https://david.ncifcrf.gov/content.jsp?file=DAVID_API.html
 
 DAVIDToolChoices <- strsplit(
 "gene2gene

@@ -23,7 +23,7 @@ Roger Day <day@upci.pitt.edu>
 }
 \references{
 Home base for DAVID  (in this package as DAVIDURLBase):
-\url{http://david.abcc.ncifcrf.gov}
+\url{https://david.ncifcrf.gov}
 
 Huang et al, DAVID gene ID conversion:
 \url{ http://www.pubmedcentral.nih.gov/articlerender.fcgi?tool=pubmed&pubmedid=18841237}}

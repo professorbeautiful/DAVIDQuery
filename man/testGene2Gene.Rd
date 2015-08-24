@@ -22,9 +22,9 @@ testGene2Gene(ids = "33246_AT,32469_AT,1786_AT,32680_AT,1355_G_AT,37968_AT,33530
 
 \examples{
 	testGene2Gene(details=FALSE)  
-		### Run example from http://david.abcc.ncifcrf.gov/gene2gene.jsp
+		### Run example from https://david.ncifcrf.gov/gene2gene.jsp
 	testGene2Gene(ids=idExampleList, type="ENTREZ_GENE_ID", details=FALSE)
-		### Run example from http://david.abcc.ncifcrf.gov/content.jsp?file=DAVID_API.html
+		### Run example from https://david.ncifcrf.gov/content.jsp?file=DAVID_API.html
 }
 \seealso{ \code{\link{DAVIDQuery}} }
 \author{ Roger Day }

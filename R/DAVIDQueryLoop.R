@@ -40,7 +40,7 @@ P01892 O19619 P06338 P10313 P30444 P30445 P30446 P30514
 				graphics=graphicMenu, title="Choose a TOOL")]
 		}
 	}
-	### To check for revised limits, see http://david.abcc.ncifcrf.gov/content.jsp?file=DAVID_API.html .
+	### To check for revised limits, see https://david.ncifcrf.gov/content.jsp?file=DAVID_API.html .
 	idLimit <- min(idLimit, 400)
 	idsRemaining <- idList
 	loopCounter <- 0
