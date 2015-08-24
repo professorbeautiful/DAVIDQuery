@@ -32,9 +32,9 @@ getIdConversionChoices <- function(urlBase=DAVIDURLBase,
                                    verbose=TRUE){
 	if (is.null(DAVIDQuery::DAVIDTypeChoices)){
 
-	  options(RCurlOptions = list(verbose = verbose, 
-	                              ssl.verifypeer = FALSE,
-	                              capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"), ssl.verifypeer = FALSE))
+	  options(RCurlOptions = list(verbose = verbose,
+	                              capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"),
+	                              ))
 	  
 		if (verbose)
 			cat("Retrieving ID conversion choices...\n");
@@ -42,7 +42,9 @@ getIdConversionChoices <- function(urlBase=DAVIDURLBase,
 		theUrl <- paste(urlBase,"conversion.jsp",sep="/");
 		theUrl <- paste0("https://", theUrl );
 
-		page <- RCurl::getURL(theUrl, curl=curl);
+		page <- RCurl::getURL(theUrl, curl=curl,
+		                      ssl.verifypeer = FALSE
+		);
 	
 		res <- list(from=getHTMLChoices(page,"name=\"Identifier\" >"),to=getHTMLChoices(page,"name=\"convertTo\""));
 

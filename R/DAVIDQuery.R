@@ -3,11 +3,12 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
                       annot, tool, URLlengthLimit = 2048, details = TRUE, verbose = FALSE, 
                       writeHTML = FALSE, testMe = FALSE, graphicMenu = FALSE, formatIt = TRUE) 
 {
-  #generate ID choices online from DAVID web site
-  options(RCurlOptions = list(verbose = verbose, 
-                              ssl.verifypeer = FALSE,
-                              capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"), ssl.verifypeer = FALSE))
+  if(length(sys.call()) == 1)  testMe <- TRUE
   
+  options(RCurlOptions = list(verbose = verbose,
+                              capath = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+  
+  #generate ID choices online from DAVID web site
   idChoices <- getIdConversionChoices(verbose=verbose);
   
   if (testMe) {
@@ -96,6 +97,7 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
   DAVIDQueryResult <- try({
     myCurlHandle <- RCurl::getCurlHandle(cookiefile = "DAVIDCookiefile.txt")
     firstStageResult <- RCurl::getURL(firstURL, curl = myCurlHandle, 
+                                      ssl.verifypeer = FALSE,
                                       verbose = FALSE)
     if (writeHTML) 
       writeChar(firstStageResult, "firstStageResult.html")
