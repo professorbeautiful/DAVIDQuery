@@ -1,7 +1,5 @@
-
 DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION", 
-
-                      annot, tool="geneReportFull", URLlengthLimit = 2048, details = TRUE, verbose = FALSE, 
+                      annot=NULL, tool="geneReportFull", URLlengthLimit = 2048, details = TRUE, verbose = FALSE, 
                       writeHTML = FALSE, testMe = FALSE, graphicMenu = FALSE, formatIt = TRUE) 
 {
   if(length(sys.call()) == 1)  testMe <- TRUE
@@ -104,7 +102,7 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
   DAVIDQueryResult <- try({
     myCurlHandle <- RCurl::getCurlHandle(cookiefile = "DAVIDCookiefile.txt")
     firstStageResult <- RCurl::getURL(firstURL, curl = myCurlHandle, 
-                                      ssl.verifypeer = FALSE,
+                                      ssl.verifypeer = FALSE, ssl.verifyhost = FALSE,
                                       verbose = FALSE)
     if (writeHTML) 
       writeChar(firstStageResult, "firstStageResult.html")
@@ -125,6 +123,7 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
       stop(paste("nchar(secondURL) too long; ", nchar(secondURL), 
                  ">", URLlengthLimit))
     secondStageResult <- RCurl::getURL(secondURL, curl = myCurlHandle, 
+                                       ssl.verifypeer = FALSE, ssl.verifyhost = FALSE,
                                        verbose = TRUE)
     hasSessionEnded <- length(grep("Your session has ended", 
                                    secondStageResult) > 0)
@@ -141,13 +140,15 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
     if (verbose) 
       cat("downloadURL = ", downloadURL, "\n")
     thirdStageResult = RCurl::getURL(downloadURL,curl = myCurlHandle, 
+                                     ssl.verifypeer = FALSE, ssl.verifyhost = FALSE,
                                      verbose = TRUE)
     writeChar(thirdStageResult, "thirdStageResult.html")
     if (tool=="geneReport"){
       # work around the format in which the file for 'geneReport' is returned by DAVID 
       read.delim("thirdStageResult.html",stringsAsFactors=FALSE,header=TRUE,nrows=0);
     } else {
-      downloadedAnswer = RCurl::getURL(downloadURL, header = TRUE, check.names = FALSE, stringsAsFactors = FALSE);
+      downloadedAnswer = RCurl::getURL(downloadURL,
+                                       ssl.verifypeer = FALSE, ssl.verifyhost = FALSE);
       write(x = downloadedAnswer, file = "downloadedAnswer.txt")
       read.delim("downloadedAnswer.txt", header = TRUE, check.names = FALSE, stringsAsFactors = FALSE);
     }
@@ -176,4 +177,3 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
                 DAVIDQueryResult = DAVIDQueryResult))
   return(DAVIDQueryResult)
 }
-
