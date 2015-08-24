@@ -1,21 +1,29 @@
 
 DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION", 
-                      annot, tool, URLlengthLimit = 2048, details = TRUE, verbose = FALSE, 
+
+                      annot, tool="geneReportFull", URLlengthLimit = 2048, details = TRUE, verbose = FALSE, 
                       writeHTML = FALSE, testMe = FALSE, graphicMenu = FALSE, formatIt = TRUE) 
 {
-  #generate ID choices online from DAVID web site
-  options(RCurlOptions = list(verbose = verbose, 
-                              ssl.verifypeer = FALSE,
-                              capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"), ssl.verifypeer = FALSE))
+  if(length(sys.call()) == 1)  testMe <- TRUE
   
+  options(RCurlOptions = list(verbose = verbose,
+                              capath = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+  
+  #generate ID choices online from DAVID web site
   idChoices <- getIdConversionChoices(verbose=verbose);
   
   if (testMe) {
-    type <- "UNIPROT_ACCESSION"
-    annot <- NULL
-    tool <- "geneReportFull"
-    verbose = TRUE
-    writeHTML = TRUE
+    if(tool == "gene2gene") {
+      ids <- "33246_AT,32469_AT,1786_AT,32680_AT,1355_G_AT,37968_AT,33530_AT,31987_AT,35956_S_AT,35956_S_AT,1112_G_AT,33077_AT,1331_S_AT,40350_AT,37968_AT,38926_AT,37953_S_AT,34436_AT,37097_AT,32439_AT,35121_AT,40317_AT,39469_S_AT,32439_AT,33685_AT,40294_AT,1575_AT,39187_AT,34720_AT,41489_AT,35439_AT,39698_AT,40790_AT,33922_AT,39908_AT,41113_AT,34606_S_AT,37711_AT,38945_AT,32073_AT"
+      type <- "AFFYMETRIX_3PRIME_IVT_ID"
+    }
+    else {  
+      type <- "UNIPROT_ACCESSION"
+      annot <- NULL
+      tool <- "geneReportFull"
+      verbose = TRUE
+      writeHTML = TRUE
+    }
   }
   else {
     if (type == "menu") {
@@ -96,6 +104,7 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
   DAVIDQueryResult <- try({
     myCurlHandle <- RCurl::getCurlHandle(cookiefile = "DAVIDCookiefile.txt")
     firstStageResult <- RCurl::getURL(firstURL, curl = myCurlHandle, 
+                                      ssl.verifypeer = FALSE,
                                       verbose = FALSE)
     if (writeHTML) 
       writeChar(firstStageResult, "firstStageResult.html")
