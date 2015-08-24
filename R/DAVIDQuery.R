@@ -1,5 +1,5 @@
 DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION", 
-                      annot, tool="geneReportFull", URLlengthLimit = 2048, details = TRUE, verbose = FALSE, 
+                      annot=NULL, tool="geneReportFull", URLlengthLimit = 2048, details = TRUE, verbose = FALSE, 
                       writeHTML = FALSE, testMe = FALSE, graphicMenu = FALSE, formatIt = TRUE) 
 {
   if(length(sys.call()) == 1)  testMe <- TRUE
