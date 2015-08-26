@@ -31,8 +31,8 @@ getAffyChipTypes<-function(urlBase=DAVIDURLBase,curl=RCurl::getCurlHandle(),verb
 		if (verbose)
 			cat("Retrieving Affymetrix array types...\n");
 
-		url=paste(urlBase,"ease/update/EASE_Files.jsp",sep="");
-		page<-RCurl::getURL(url,curl=curl);
+		url=paste("https://", urlBase, "ease/update/EASE_Files.jsp",sep="");
+		page<-RCurl::getURL(httpsUrl,curl=curl);
 
 		chipTypes<-getHTMLChoices(page,"Select an Affymetrix Population file");
 		names<-chipTypes[,"name"];
