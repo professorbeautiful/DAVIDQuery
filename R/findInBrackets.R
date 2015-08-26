@@ -20,7 +20,9 @@
 
 
 findInBrackets<-function(string,left,right,includeLeft=FALSE,includeRight=FALSE){
-	pos1<-gregexpr(right,string)[[1]];
+  if(is.null(string))
+    return("")
+  pos1<-gregexpr(right,string)[[1]];
 	pos2<-gregexpr(left,string)[[1]];
 	if (pos1[1]<1)
 		return(NULL);

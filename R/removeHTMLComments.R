@@ -7,6 +7,8 @@
 #' @author Roger Day, Alex Lisovich
 
 removeHTMLComments<-function(string){
+  if(is.null(string))
+    return(NULL)
 	split<-strsplit(string,"<!--")[[1]];
 	res<-split[1];
 	if (length(split)>1){

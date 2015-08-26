@@ -238,7 +238,7 @@ the raw character table actually returned.
 
 <<chunk1>>= 
 library("DAVIDQuery")
-result = DAVIDQuery(type="UNIPROT_ACCESSION", annot=NULL, tool="geneReportFull")
+result = DAVIDQuery(testMe=TRUE)
 names(result)
 
 @
@@ -275,7 +275,8 @@ names(result[[1]])
 Convenience functions are provided to assist with integrating genomic
 and proteomic data:
 
-<<chunk4>>=
+<<chunk4, eval=FALSE>>=
+### No longer working as of 2015-08-25
 Sys.sleep(10)  ### Assure that queries are not too close in time.
 affyToUniprot(details=FALSE)
 Sys.sleep(10)  ### Assure that queries are not too close in time.
