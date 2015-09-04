@@ -10,6 +10,6 @@ testGene2Gene <- function(ids="33246_AT,32469_AT,1786_AT,32680_AT,1355_G_AT,3796
 ##			gene2gene.example.input <- gene2gene.example.output[,1]
 ##			gene2gene.example.input <- gene2gene.example.input [
 ##		- grep("Functional Group", gene2gene.example.input)]
-	DAVIDQuery(ids=ids, type=type, 
+	DAVIDQuery(testMe=TRUE, type=type, 
 		tool="gene2gene", annot=NULL, ...)
 }
