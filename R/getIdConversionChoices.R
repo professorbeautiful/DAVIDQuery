@@ -32,8 +32,8 @@ getIdConversionChoices <- function(urlBase=DAVIDURLBase,
                                    verbose=TRUE){
 	if (is.null(DAVIDQuery::DAVIDTypeChoices)){
 
-	  options(RCurlOptions = list(verbose = verbose,
-	                              capath = system.file("CurlSSL", "cacert.pem", package = "RCurl")
+	  options(RCurlOptions = list(verbose = verbose
+	                             #,  capath = system.file("CurlSSL", "cacert.pem", package = "RCurl")
 	                              ))
 		if (verbose)
 			cat("Retrieving ID conversion choices...\n");

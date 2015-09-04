@@ -4,8 +4,9 @@ DAVIDQuery<-function (ids = "O00161,O75396", type = "UNIPROT_ACCESSION",
 {
   if(length(sys.call()) == 1)  testMe <- TRUE
   
-  options(RCurlOptions = list(verbose = verbose,
-                              capath = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+  options(RCurlOptions = list(verbose = verbose
+                             # , capath = system.file("CurlSSL", "cacert.pem", package = "RCurl")
+          ))
   
   #generate ID choices online from DAVID web site
   idChoices <- getIdConversionChoices(verbose=verbose);
