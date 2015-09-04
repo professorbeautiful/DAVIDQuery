@@ -7,8 +7,10 @@ Make a query larger than DAVID allows in one go, by looping, respecting the limi
 }
 \usage{
 DAVIDQueryLoop(
-	idList = unlist(strsplit(strsplit("P31946 P62258 P29360 P42655 Q63631\nP01892 O19619 P06338 P10313 P30444 P30445 P30446 P30514\n",
-		" ")[[1]], "\n")),
+	idList = c(
+	  "P31946", "P62258", "P29360", "P42655", "Q63631", "P01892",
+	  "O19619", "P06338", "P10313", "P30444", "P30445", 
+	  "P30446", "P30514"),
 	idLimit = 100,
 	sleepSeconds = 10,
 	hitsPerDayLimit = 200,

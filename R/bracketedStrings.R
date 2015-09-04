@@ -1,5 +1,7 @@
 bracketedStrings <-
-function(s, before, after, verbose=FALSE, addNames=FALSE, drop.na=TRUE, warn.if.gt.1=TRUE) {
+function(s, before, after, 
+         verbose=FALSE, addNames=FALSE, 
+         drop.na=TRUE, warn.if.gt.1=TRUE) {
 	if(length(s) > 1) {
 		result <- lapply(s, bracketedStrings, 
 			before=before, after=after, verbose=FALSE)

@@ -6,8 +6,10 @@
   Launch a query against DAVID, the Database for Annotation, Visualization and Integrated Discovery.  Return the results into an R object.
 }
 \usage{
-DAVIDQuery(ids = "O00161,O75396", type = "UNIPROT_ACCESSION", annot, tool, URLlengthLimit = 2048,
-details = TRUE, verbose = FALSE, writeHTML = FALSE, testMe = FALSE, graphicMenu = FALSE,  formatIt = TRUE)
+DAVIDQuery(ids = "O00161,O75396", type = "UNIPROT_ACCESSION", 
+annot, tool, URLlengthLimit = 2048,
+details = TRUE, verbose = FALSE, writeHTML = FALSE, 
+testMe = FALSE, graphicMenu = FALSE,  formatIt = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -6,7 +6,8 @@
 Extract substrings that are bracketed by specified strings before and after.
 }
 \usage{
-bracketedStrings(s, before, after, verbose=FALSE, addNames=FALSE, drop.na=TRUE, warn.if.gt.1=TRUE)
+bracketedStrings(s, before, after, verbose=FALSE, addNames=FALSE, 
+drop.na=TRUE, warn.if.gt.1=TRUE)
 }
 \arguments{
   \item{s}{ Vector of strings to search. }
