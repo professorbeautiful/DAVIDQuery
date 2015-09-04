@@ -1,10 +1,4 @@
 .onAttach = function(libname, pkgname) {
-  data(DAVIDURLBase)
-  data(DAVIDToolChoices)
-  data(DAVIDTypeChoices)
-  data(DAVIDAnnotChoices)
-  data(DAVIDAffyChipChoices)
-  data(idExampleList)
   desc <- packageDescription("DAVIDQuery")
 	DQdate <-  desc$Date
 	DQVersion =  desc$Version
